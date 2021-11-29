@@ -1,0 +1,35 @@
+<div class="container">  <!-- この行を追加 -->
+<div class="row">
+
+<div class="col-md-3">
+  
+
+<%= render 'users/list', user: @user %>
+
+　　<% if @user.id == current_user.id %>
+      <%= link_to edit_user_path(@user) do %>
+    　<span class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_41173"></span>
+      <% end %>
+    <% end %>
+
+<%= render 'books/list', book: @book %>
+
+</div>
+
+<div class="col-md-8 offset-md-1">
+  
+<h1>Books</h1>
+<% @books.each do |books| %>
+<div>
+　<%= link_to  user_path(books.user) do %>
+  <%= attachment_image_tag books.user, :profile_image,:fill,  40, 40, fallback: "Unknown.jpg",size: "40x40" %>
+  <% end %>
+  <p>Title：<%= link_to books.title, book_path(books) %></p>
+  <p>Opinion：<%= books.body %></p>
+</div>
+<% end %>
+
+</div>
+
+ </div>
+</div>
